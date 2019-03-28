@@ -71,7 +71,7 @@ class ChatsView: UIViewController, UISearchBarDelegate, UITableViewDataSource, U
 				OnboardUser(target: self)
 			}
 		} else {
-			LoginUser(target: self)
+//            LoginUser(target: self)
 		}
 	}
 

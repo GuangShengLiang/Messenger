@@ -62,7 +62,7 @@ class CallsView: UIViewController, UITableViewDataSource, UITableViewDelegate {
 				OnboardUser(target: self)
 			}
 		} else {
-			LoginUser(target: self)
+            LoginUser(target: self)
 		}
 	}
 

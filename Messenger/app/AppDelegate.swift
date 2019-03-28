@@ -78,10 +78,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, SINServiceDelegate, SINCa
 		//-----------------------------------------------------------------------------------------------------------------------------------------
 		// This can be removed once Firebase auth issue is resolved
 		//-----------------------------------------------------------------------------------------------------------------------------------------
-		if (UserDefaultsX.bool(key: "Initialized") == false) {
-			UserDefaultsX.setObject(value: true, key: "Initialized")
-			FUser.logOut()
-		}
+
+        if (UserDefaultsX.bool(key: "Initialized") == false) {
+            UserDefaultsX.setObject(value: true, key: "Initialized")
+            FUser.logOut()
+        }
 
 		//-----------------------------------------------------------------------------------------------------------------------------------------
 		// Shortcut items initialization

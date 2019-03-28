@@ -75,7 +75,7 @@ class PeopleView: UIViewController, UISearchBarDelegate, UITableViewDataSource, 
 				OnboardUser(target: self)
 			}
 		} else {
-			LoginUser(target: self)
+//            LoginUser(target: self)
 		}
 	}
 
