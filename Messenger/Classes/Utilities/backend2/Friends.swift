@@ -10,6 +10,9 @@
 // THE SOFTWARE.
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------
+import UIKit
+import SwiftyJSON
+
 class Friends: NSObject {
 
 	private var timer: Timer?
@@ -42,9 +45,41 @@ class Friends: NSObject {
 			if (firebase == nil) {
 				createObservers()
 			}
-		}
+        }else{
+            print("fetchFriendList ")
+            fetchFriendList()
+        }
 	}
+    func fetchFriendList() {
+        let jsonPath = Bundle.main.path(forResource: "contact", ofType: "json")
+        let data = NSData.init(contentsOfFile: jsonPath!)
+        do {
+            
+            let jsonDic:NSDictionary = try! JSONSerialization.jsonObject(with: data! as Data, options: JSONSerialization.ReadingOptions.mutableContainers) as! NSDictionary
+            let array:NSArray = jsonDic.object(forKey: "data") as! NSArray
+            //解析联系人数据
+            if let contactArray:NSArray = array[0] as! NSArray, contactArray.count > 0 {
+                print("fetchFriendList \(contactArray.count)")
+                
+                for dict in contactArray {
+                    let friend = dict as! [String : Any]
+//                    let id = friend["friendId"]
+                    print("fetchFriendList \(friend["friendId"])")
 
+                    //                    if (friend[FFRIEND_CREATEDAT] as? Int64 != nil) {
+                    DispatchQueue(label: "Friends").async {
+                        self.updateRealm(friend: friend)
+                        self.refreshUIFriends = true
+                    }
+                    //                    }
+                }
+            }
+            
+        } catch {
+            print("Error \(error)")
+        }
+        
+    }
 	//---------------------------------------------------------------------------------------------------------------------------------------------
 	func createObservers() {
 

@@ -120,6 +120,7 @@ PODS:
   - SinchRTC (3.12.8)
   - SinchVerification (2.0.6)
   - SoundManager (1.4.2)
+  - SwiftyJSON (4.0.0)
 
 DEPENDENCIES:
   - ApiAI/Core
@@ -142,6 +143,7 @@ DEPENDENCIES:
   - SinchRTC
   - SinchVerification
   - SoundManager
+  - SwiftyJSON (= 4.0.0)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -178,6 +180,7 @@ SPEC REPOS:
     - SinchRTC
     - SinchVerification
     - SoundManager
+    - SwiftyJSON
 
 SPEC CHECKSUMS:
   ApiAI: d4b49d3736f33ce6f3ef66dc33c0e0fccb23579e
@@ -213,7 +216,8 @@ SPEC CHECKSUMS:
   SinchRTC: aafe970312279b220b2e9d075fb39d5abcb85d93
   SinchVerification: 3bf62ff2d57eb10ecc27796ce9736c786644fe23
   SoundManager: 99ae328a3ec9b259db774c9851a65feeceba8183
+  SwiftyJSON: 070dabdcb1beb81b247c65ffa3a79dbbfb3b48aa
 
-PODFILE CHECKSUM: a0cbec1da83d52f39f27d45ec8152d307be79324
+PODFILE CHECKSUM: 859e1d44ac7373d6156075a469061afc08deda62
 
-COCOAPODS: 1.7.0.beta.2
+COCOAPODS: 1.6.1

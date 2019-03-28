@@ -10,6 +10,10 @@
 // THE SOFTWARE.
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------
+
+import UIKit
+import SwiftyJSON
+
 class Users: NSObject {
 
 	private var timer: Timer?
@@ -42,9 +46,39 @@ class Users: NSObject {
 			if (firebase == nil) {
 				createObservers()
 			}
-		}
-	}
+        }else{
+            print("fetchContactList ")
 
+            fetchContactList()
+        }
+	}
+    func fetchContactList() {
+        let jsonPath = Bundle.main.path(forResource: "contact", ofType: "json")
+        let data = NSData.init(contentsOfFile: jsonPath!)
+        do {
+            
+            let jsonDic:NSDictionary = try! JSONSerialization.jsonObject(with: data! as Data, options: JSONSerialization.ReadingOptions.mutableContainers) as! NSDictionary
+            let array:NSArray = jsonDic.object(forKey: "data") as! NSArray
+            //解析联系人数据
+            if let contactArray:NSArray = array[1] as! NSArray, contactArray.count > 0 {
+                print("fetchContactList \(contactArray.count)")
+
+                for dict in contactArray {
+                    let user = dict as! [String : Any]
+                    //                    if (friend[FFRIEND_CREATEDAT] as? Int64 != nil) {
+                    DispatchQueue(label: "Friends").async {
+                        self.updateRealm(user: user)
+                        self.refreshUIUsers = true
+                    }
+                    //                    }
+                }
+            }
+            
+        } catch {
+            print("Error \(error)")
+        }
+        
+    }
 	//---------------------------------------------------------------------------------------------------------------------------------------------
 	func createObservers() {
 
