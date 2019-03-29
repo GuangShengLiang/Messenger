@@ -63,8 +63,9 @@ class ChatsView: UIViewController, UISearchBarDelegate, UITableViewDataSource, U
 	override func viewDidAppear(_ animated: Bool) {
 
 		super.viewDidAppear(animated)
-
-		if (FUser.currentId() != "") {
+        if(FUser.isTest()){
+            
+        }else if (FUser.currentId() != "") {
 			if (FUser.isOnboardOk()) {
 				refreshTableView()
 			} else {

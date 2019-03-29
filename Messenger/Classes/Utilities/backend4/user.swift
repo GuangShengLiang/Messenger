@@ -58,7 +58,7 @@ func UserLoggedIn(loginMethod: String) {
 	UpdateOneSignalId()
 	UpdateLastActive()
 
-	LinkedId.createItem()
+//    LinkedId.createItem()
 
 	if (FUser.isOnboardOk()) {
 		ProgressHUD.showSuccess("Welcome back!")

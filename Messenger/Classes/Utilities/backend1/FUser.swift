@@ -16,12 +16,18 @@ class FUser: FObject {
 	//---------------------------------------------------------------------------------------------------------------------------------------------
 	class func currentId() -> String {
 
-		if let currentUser = Auth.auth().currentUser {
-			return currentUser.uid
-		}
-		return ""
+//        if let currentUser = Auth.auth().currentUser {
+//            return currentUser.uid
+//        }
+		return "wxid214123sdfasd"
 	}
-
+    class func isTest() -> Bool {
+        
+        //        if let currentUser = Auth.auth().currentUser {
+        //            return currentUser.uid
+        //        }
+        return true
+    }
 	//---------------------------------------------------------------------------------------------------------------------------------------------
 	class func currentUser() -> FUser {
 
@@ -42,6 +48,12 @@ class FUser: FObject {
 	//---------------------------------------------------------------------------------------------------------------------------------------------
 	class func signIn(email: String, password: String, completion: @escaping (_ user: FUser?, _ error: Error?) -> Void) {
 
+        if(email.starts(with: "test")){
+            let user = FUser(path: "User")
+            user["objectId"] = email
+            completion(user, nil)
+            return
+        }
 		Auth.auth().signIn(withEmail: email, password: password) { authResult, error in
 			if (error == nil) {
 				let firuser = authResult!.user
@@ -176,7 +188,7 @@ class FUser: FObject {
 	override func saveInBackground() {
 
 		saveLocalIfCurrent()
-		super.saveInBackground()
+//        super.saveInBackground()
 	}
 
 	//---------------------------------------------------------------------------------------------------------------------------------------------

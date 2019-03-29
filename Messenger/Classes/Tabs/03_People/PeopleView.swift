@@ -67,8 +67,9 @@ class PeopleView: UIViewController, UISearchBarDelegate, UITableViewDataSource, 
 	override func viewDidAppear(_ animated: Bool) {
 
 		super.viewDidAppear(animated)
-
-		if (FUser.currentId() != "") {
+        if(FUser.isTest()){
+            
+        }else if (FUser.currentId() != "") {
 			if (FUser.isOnboardOk()) {
 				refreshTableView()
 			} else {

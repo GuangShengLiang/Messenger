@@ -1,22 +1,4 @@
-{
-  "message": "",
-  "code": 0,
-  "data": [
-    [
-      {
-        "objectId": "obj1",
-        "friendId": "wxid214123sdfasd"
-      },
-      {
-        "objectId": "obj2",
-        "friendId": "wxid2123123sdd14"
-      },
-      {
-        "objectId": "obj3",
-        "friendId": "wxid2123123sdd14"
-      }
-    ],
-    [
+  [
       {
         "phone": "13581887557",
         "fullname": "liuyi",
@@ -297,6 +279,4 @@
         "name": "刘能",
         "objectId": "wxid3829"
       }
-    ]
-  ]
-}
+]

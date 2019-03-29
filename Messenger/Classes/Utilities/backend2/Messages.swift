@@ -53,14 +53,42 @@ class Messages: NSObject {
 
 	//---------------------------------------------------------------------------------------------------------------------------------------------
 	@objc func initObservers() {
-
-		if (FUser.currentId() != "") {
+        if(FUser.isTest()){
+            fetchMessageList()
+        }else if (FUser.currentId() != "") {
 			if (firebase == nil) {
 				createObservers()
 			}
-		}
+        }
 	}
-
+    func fetchMessageList() {
+        let jsonPath = Bundle.main.path(forResource: "message", ofType: "json")
+        let data = NSData.init(contentsOfFile: jsonPath!)
+        do {
+            
+            let array:NSArray = try! JSONSerialization.jsonObject(with: data! as Data, options: JSONSerialization.ReadingOptions.mutableContainers) as! NSArray
+            //解析联系人数据
+            if array.count > 0 {
+                print("fetchMessageList \(array.count)")
+                for dict in array {
+                    let message = dict as! [String : Any]
+//                    if (message[FMESSAGE_CREATEDAT] as? Int64 != nil) {
+                        DispatchQueue(label: "Messages").async {
+                            self.updateRealm(message: message)
+                            self.updateChat(message: message)
+                            self.playMessageIncoming(message: message)
+                            self.refreshUserInterface1(message: message)
+                        }
+//                    }
+                    //                    }
+                }
+            }
+            
+        } catch {
+            print("Error \(error)")
+        }
+        
+    }
 	// MARK: - Backend methods
 	//---------------------------------------------------------------------------------------------------------------------------------------------
 	func createObservers() {

@@ -41,29 +41,26 @@ class Users: NSObject {
 	// MARK: - Backend methods
 	//---------------------------------------------------------------------------------------------------------------------------------------------
 	@objc func initObservers() {
-
-		if (FUser.currentId() != "") {
+        if(FUser.isTest()){
+            print("fetchContactList ")
+            fetchContactList()
+        }else if (FUser.currentId() != "") {
 			if (firebase == nil) {
 				createObservers()
 			}
-        }else{
-            print("fetchContactList ")
-
-            fetchContactList()
         }
 	}
     func fetchContactList() {
-        let jsonPath = Bundle.main.path(forResource: "contact", ofType: "json")
+        let jsonPath = Bundle.main.path(forResource: "user", ofType: "json")
         let data = NSData.init(contentsOfFile: jsonPath!)
         do {
             
-            let jsonDic:NSDictionary = try! JSONSerialization.jsonObject(with: data! as Data, options: JSONSerialization.ReadingOptions.mutableContainers) as! NSDictionary
-            let array:NSArray = jsonDic.object(forKey: "data") as! NSArray
+            let array:NSArray = try! JSONSerialization.jsonObject(with: data! as Data, options: JSONSerialization.ReadingOptions.mutableContainers) as! NSArray
             //解析联系人数据
-            if let contactArray:NSArray = array[1] as! NSArray, contactArray.count > 0 {
-                print("fetchContactList \(contactArray.count)")
+            if array.count > 0 {
+                print("fetchContactList \(array.count)")
 
-                for dict in contactArray {
+                for dict in array {
                     let user = dict as! [String : Any]
                     //                    if (friend[FFRIEND_CREATEDAT] as? Int64 != nil) {
                     DispatchQueue(label: "Friends").async {

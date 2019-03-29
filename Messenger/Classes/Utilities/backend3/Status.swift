@@ -25,16 +25,16 @@ class Status: NSObject {
 		object[FSTATUS_LASTREAD] = lastRead
 		object[FSTATUS_MUTEDUNTIL] = mutedUntil
 
-		object.saveInBackground(block: { error in
-			if (error == nil) {
-				object.fetchInBackground(block: { error in
-					let firebase = Database.database().reference(withPath: FLASTREAD_PATH).child(chatId)
-					firebase.updateChildValues([FUser.currentId(): lastRead])
-				})
-			} else {
-				ProgressHUD.showError("Network error.")
-			}
-		})
+//        object.saveInBackground(block: { error in
+//            if (error == nil) {
+//                object.fetchInBackground(block: { error in
+//                    let firebase = Database.database().reference(withPath: FLASTREAD_PATH).child(chatId)
+//                    firebase.updateChildValues([FUser.currentId(): lastRead])
+//                })
+//            } else {
+//                ProgressHUD.showError("Network error.")
+//            }
+//        })
 	}
 
 	//---------------------------------------------------------------------------------------------------------------------------------------------

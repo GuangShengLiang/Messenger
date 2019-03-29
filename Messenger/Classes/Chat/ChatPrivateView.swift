@@ -37,6 +37,7 @@ class ChatPrivateView: RCMessagesView, UIGestureRecognizerDelegate, UIImagePicke
 		recipientId = recipientId_
 
 		chatId = Chat.chatId(recipientId: recipientId)
+        print("chatId \(chatId)")
 		isBlocker = Blocker.isBlocker(userId: recipientId)
 	}
 
@@ -402,7 +403,7 @@ class ChatPrivateView: RCMessagesView, UIGestureRecognizerDelegate, UIImagePicke
 
 		refreshTableView2()
 		scroll(toBottom: true)
-		Status.updateLastRead(chatId: chatId)
+        Status.updateLastRead(chatId: chatId)
 	}
 
 	//---------------------------------------------------------------------------------------------------------------------------------------------
