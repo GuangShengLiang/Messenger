@@ -43,6 +43,7 @@ class Users: NSObject {
 	@objc func initObservers() {
         if(FUser.isTest()){
             print("fetchContactList ")
+            saveUser()
             fetchContactList()
         }else if (FUser.currentId() != "") {
 			if (firebase == nil) {
@@ -50,6 +51,11 @@ class Users: NSObject {
 			}
         }
 	}
+    func saveUser(){
+        var user  = FUser.userWithId(userId: "wxid214123sdfasd")
+        UserDefaults.standard.set(user, forKey: "CurrentUser")
+        UserDefaults.standard.synchronize()
+    }
     func fetchContactList() {
         let jsonPath = Bundle.main.path(forResource: "user", ofType: "json")
         let data = NSData.init(contentsOfFile: jsonPath!)

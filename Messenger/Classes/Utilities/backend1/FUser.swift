@@ -195,12 +195,12 @@ class FUser: FObject {
 	override func saveInBackground(block: @escaping (_ error: Error?) -> Void) {
 
 		saveLocalIfCurrent()
-		super.saveInBackground(block: { error in
-			if (error == nil) {
-				self.saveLocalIfCurrent()
-			}
-			block(error)
-		})
+//        super.saveInBackground(block: { error in
+//            if (error == nil) {
+//                self.saveLocalIfCurrent()
+//            }
+//            block(error)
+//        })
 	}
 
 	// MARK: - Fetch methods
