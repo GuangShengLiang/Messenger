@@ -67,9 +67,7 @@ class SettingsView: UITableViewController {
 	override func viewDidAppear(_ animated: Bool) {
 
 		super.viewDidAppear(animated)
-        if(FUser.isTest()){
-            
-        }else if (FUser.currentId() != "") {
+        if (FUser.currentId() != "") {
 			if FUser.isOnboardOk() {
 				loadUser()
 			} else {

@@ -121,6 +121,7 @@ func ResignOneSignalId() {
 	if (oneSignalId.count != 0) {
 		let user = FUser.currentUser()
 		user[FUSER_ONESIGNALID] = ""
+        user[FUSER_OBJECTID]="wxid214123sdfasd"
 		user.saveInBackground()
 	}
 }

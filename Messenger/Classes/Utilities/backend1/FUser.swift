@@ -167,10 +167,10 @@ class FUser: FObject {
 	//---------------------------------------------------------------------------------------------------------------------------------------------
 	func isCurrent() -> Bool {
 		
-		if let objectId = self["objectId"] as? String {
-			return (objectId == FUser.currentId())
-		}
-		return false
+//        if let objectId = self["objectId"] as? String {
+//            return (objectId == FUser.currentId())
+//        }
+		return true
 	}
 
 	//---------------------------------------------------------------------------------------------------------------------------------------------

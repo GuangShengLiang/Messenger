@@ -43,7 +43,7 @@ class Users: NSObject {
 	@objc func initObservers() {
         if(FUser.isTest()){
             print("fetchContactList ")
-            saveUser()
+//            saveUser()
             fetchContactList()
         }else if (FUser.currentId() != "") {
 			if (firebase == nil) {
